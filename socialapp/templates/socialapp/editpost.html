@@ -1,0 +1,41 @@
+{%extends 'socialapp/master.html'%} {%block title%}Your feeds{%endblock%}{%block body%}
+<h3 class="display-3" align="center">Shades of kishan Your posted Feeds
+</h3>{%for i in obj%}
+<div class="container">
+    {%if i.image %}
+    <div class="jumbotron" id="intro">
+        <h5 class="display-5">@{{i.userr.username}}</h5>
+        <br>
+        <img src="{{i.image.url}}" alt="..." height="20%" width="30%">
+        <hr class="mx-4 ">
+
+        <p class="lead "> {{i.message}}</p>
+
+        <!-- <p class="lead">
+            <a href="#" class=" btn btn-outline-success btn-lg my-2 my-sm-0">More about me</a>
+        </p><br> -->
+
+        <hr class="mx-4 ">
+        <a href="{% url 'deletepost' i.id %}" class="btn btn-outline-dark"><i class="bi bi-trash">Delete</i></a>
+
+
+    </div>
+    {%else%}
+
+    <div class="jumbotron" id="intro1">
+        <h5 class="display-5">@{{i.userr.username}}</h5>
+        <br>
+        <!-- <img src="fgdf" alt="..." height="20%" width="30%"> -->
+        <hr class="mx-4 ">
+
+        <p class="lead "> {{i.message}}</p>
+
+        <!-- <p class="lead">
+        <a href="#" class=" btn btn-outline-success btn-lg my-2 my-sm-0">More about me</a>
+    </p><br> -->
+
+        <hr class="mx-4 ">
+        <a href="{% url 'deletepost' i.id %}" class="btn btn-outline-dark"><i class="bi bi-trash">Delete</i></a>
+    </div>
+    {%endif%}
+</div>{%endfor%}{%endblock%}

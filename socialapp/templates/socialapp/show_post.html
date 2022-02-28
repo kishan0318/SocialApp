@@ -1,0 +1,44 @@
+{%extends 'socialapp/master.html'%} {%block title%}Feeds{%endblock%}{%block body%}
+<h3 class="display-3" align="center">Shades of kishan Feeds
+</h3> {% for i in data %}
+<div class="container">
+    {%if i.image %}
+    <div class="jumbotron" id="intro">
+        <h5 class="display-5">@{{i.user}}</h5>
+        <br>
+        <img src="{{i.image}}" alt="..." height="20%" width="30%">
+        <hr class="mx-1">
+        <p class="lead "> {{i.message}}</p>
+        <hr class="mx-1">
+        <h1>Comments...</h1>
+        <a href="{%url 'comments'   %}"> Add new..</a>
+
+        <br/>{% for j in i.comments %}
+        <br/>
+        <h5>User id:{{ j.name }}</h5>
+        <b>{{ j.comments }}</b> <br>
+        <small>Date added: {{ j.date_added }}</small><br/>
+
+
+        <hr class="mx-3">{%endfor%}
+        <!-- {{i.comments_set}} -->
+    </div>
+    {% else %}
+    <div class="jumbotron" id="intro1">
+        <h5 class="display-5">@{{i.user}}</h5>
+        <br>
+        <hr class="mx-1 ">
+        <p class="lead "> {{i.message}}</p>
+        <hr class="mx-1">
+        <h1>Comments...
+        </h1><a href="#"> Add new..</a>
+
+        </form><br/>{% for j in i.comments %}
+        <br/>
+        <h5>User id:{{ j.name }}.</h5>
+        <b>{{ j.comments }}</b> <br>
+        <small>Date added: {{ j.date_added }}</small>
+        <br/>
+        <hr class="mx-3 ">{%endfor%}
+    </div>{% endif %}
+</div> {% endfor %} {% endblock %}

@@ -1,0 +1,16 @@
+{%extends 'socialapp/master.html'%}{%block title%}Signup{%endblock%} {%block body%}
+<h1 align="center">Welcome to Shades_of_kishan </h1>
+<p align="center">Register yourself to connect.</p>
+
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="container py-5">
+        <table border="3px" align="center" cellpadding="15px" cellmargin="2px">
+            {{data.as_table}}
+        </table>
+        <div class="col mt-2" align="center">
+            <button class="btn btn-outline-success" type="submit">Submit</button>
+            <input class="btn btn-outline-danger" type="reset" value="Reset">
+        </div>
+    </div>
+</form>{%endblock%}
