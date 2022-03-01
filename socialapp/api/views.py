@@ -140,17 +140,22 @@ class FriendAPIView(APIView):
     def post(self,request,*args,**kwargs):
         user=request.user
         id=request.data.get('to_user')
+        date=request.data.get('on_date')
         # to_user=User.objects.get(id=id)
         try:
             x=User.objects.get(id=id)
         except:
             return Response({'error':'Not found'},status=HTTP_404_NOT_FOUND)
-        if x:
-            Friends.objects.create(from_user=user,to_user=x,on_date=request.data.get('on_date'))
-            return Response({'Success':'Request sent successfully'})
+        requested=False
+        request=Friends.objects.filter(from_user=user,to_user=x)
+        if request:
+            request.delete()
         else:
-            return Response({'Error':'Already sent.'},status=HTTP_404_NOT_FOUND)
-     
+            requested=True
+            Friends.objects.create(from_user=user,to_user=x,on_date=date)
+            # return Response({'Error':'Request Sent successfully'},status=HTTP_404_NOT_FOUND)
+        return Response({'message':'Request Sent successfully','data':requested},status=HTTP_200_OK)
+    
 """class Accept(APIView):
     permission_classes=[IsAuthenticated,]
     def post(self, request, *args, **kwargs):
