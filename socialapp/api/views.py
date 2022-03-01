@@ -146,7 +146,7 @@ class FriendAPIView(APIView):
         except:
             return Response({'error':'Not found'},status=HTTP_404_NOT_FOUND)
         if x:
-            friend_request,created=Friends.objects.create(from_user=user,to_user=x,on_date=request.data.get('on_date'))
+            Friends.objects.create(from_user=user,to_user=x,on_date=request.data.get('on_date'))
             return Response({'Success':'Request sent successfully'})
         else:
             return Response({'Error':'Already sent.'},status=HTTP_404_NOT_FOUND)
