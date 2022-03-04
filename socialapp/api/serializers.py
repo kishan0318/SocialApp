@@ -130,4 +130,17 @@ class FriendsSer(ModelSerializer):
         fields=('__all__')
 
 
-
+class FriendsSer1(Serializer):
+    on_date=DateField()
+    from_user=CharField(error_messages={'required':'from_user key is required','blank':'from_user field can`t be blank is required'})
+    is_accepted=BooleanField()
+    def update(self,instance,validated_data):
+        instance.on_date = validated_data.get('on_date')
+        instance.from_user = User.objects.get(id=validated_data.get('from_user'))
+        instance.to_user=self.context.get('user')
+        instance.is_accepted=validated_data.get('is_accepted')
+        if instance.is_accepted==True:
+            instance.save()
+        else: 
+            instance.delete()
+        return validated_data 

@@ -14,4 +14,5 @@ urlpatterns =[
     path('add_comments',CommentsApiView.as_view(),name='comment'),
     path('like',LikeAPIView.as_view(),name='like'),
     path('send_request',FriendAPIView.as_view(),name='send_request'),
+    path('accept/<int:pk>',AcceptAPI.as_view(),name='accept'),
 ]

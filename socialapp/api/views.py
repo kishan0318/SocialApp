@@ -152,13 +152,22 @@ class FriendAPIView(APIView):
             request.delete()
         else:
             requested=True
-            Friends.objects.create(from_user=user,to_user=x,on_date=date)
+            Friends.objects.create(from_user=user,to_user=x,on_date=date,is_accepted=False)
             # return Response({'Error':'Request Sent successfully'},status=HTTP_404_NOT_FOUND)
         return Response({'message':'Request Sent successfully','data':requested},status=HTTP_200_OK)
-     
 
-  
-
+class AcceptAPI(APIView):
+    permission_classes = [IsAuthenticated]
+    def put(self,request,pk):
+        try:
+            stu=Friends.objects.get(id=pk)
+        except:
+            return Response({'Error':'Not found'},status=HTTP_404_NOT_FOUND)
+        serializer=FriendsSer1(instance=stu,data=request.data,partial=True, context={'user':request.user})
+        if serializer.is_valid():
+           serializer.save()
+           return Response({'success':'Request Accepted successfully','data':serializer.data},status=HTTP_200_OK) 
+        return Response(Serializer.errors,status=HTTP_400_BAD_REQUEST)
     
-
- 
+    
+       
