@@ -152,11 +152,6 @@ class FriendAPIView(APIView):
             request.delete()
         else:
             requested=True
-<<<<<<< HEAD
-            Friends.objects.create(from_user=user,to_user=x,on_date=date,is_accepted=False)
-            # return Response({'Error':'Request Sent successfully'},status=HTTP_404_NOT_FOUND)
-        return Response({'message':'Request Sent successfully','data':requested},status=HTTP_200_OK)
-=======
             Friends.objects.create(from_user=user,to_user=x,on_date=date)
             # return Response({'Error':'Request Sent successfully'},status=HTTP_404_NOT_FOUND)
         return Response({'message':'Request Sent successfully','data':requested},status=HTTP_200_OK)
@@ -169,7 +164,6 @@ class FriendAPIView(APIView):
             pass
 """
   
->>>>>>> 3c515b1c85f442743a615d7e2ff2087dac60cc4c
 
 class AcceptAPI(APIView):
     permission_classes = [IsAuthenticated]
