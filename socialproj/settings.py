@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'socialproj.wsgi.application'
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'SocialAppDB',
+       'NAME': 'rds', #'SocialAppDB',
        'USER': 'postgres',
        'PASSWORD': 'root',
        'HOST': 'localhost',
