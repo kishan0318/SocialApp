@@ -5,7 +5,7 @@ from rest_framework.serializers import Serializer, ModelSerializer, SerializerMe
 from socialapp.models import Post, Comment, User,Profile,LikePost,Friends
 from rest_framework.serializers import *
 from rest_framework_jwt.settings import api_settings
-from rest_framework_jwt.settings import api_settings
+# from rest_framework_jwt.settings import api_settings
 from django.views.decorators.csrf import csrf_exempt
 
 class CommentSerializer(ModelSerializer):
